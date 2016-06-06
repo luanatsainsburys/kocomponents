@@ -1,0 +1,108 @@
+﻿<div class="one-objective link-edit-panel" style="display: none;" data-bind="visible: true">
+	<div data-bind="visible: !expandedView() && !expandedAll()">
+		<div class="row">
+			<div class="col-sm-11">
+				<h3 data-bind="text: data.Title()?data.Title().replace(/^(.{60}[^\s]*).*/,'$1'):''"></h3>
+			</div>
+			<div class="col-sm-1 pull-right" data-bind="if: enableViewToggle">
+				<a href="#" target="_blank" data-bind="click: toggleView" class="pull-right"><icon class="fa" data-bind="css: { 'fa-minus': expandedView() || expandedAll(), 'fa-plus': !expandedView() && !expandedAll() }"></icon></a>
+			</div>
+		</div>
+	</div>
+	<div data-bind="visible: expandedView() || expandedAll()">
+		<div class="row print-hide">
+			<div class="col-sm-10">
+				<label for="objectiveTitle">Objective title</label>
+			</div>
+			<div class="col-sm-1 pull-right expanded-objective" data-bind="if: enableViewToggle">
+				<a href="#" target="_blank" data-bind="click: toggleView" class="pull-right">
+					<icon class="fa fa-minus" data-bind="css: { 'fa-minus': expandedView() || expandedAll(), 'fa-plus': !expandedView() && !expandedAll() }"></icon>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 print-hide">
+				<textarea id="objectiveTitle" data-bind="textInput: data.Title, visible: !$component.readOnly()"></textarea>
+                <div data-bind="text: data.Title, visible: $component.readOnly(), style: { 'white-space': 'pre-wrap' }">
+                </div>
+			</div>
+			<h1 class="print-show" data-bind="text: data.Title"></h1>
+		</div>
+		<label class="padding-top-15">What will I do to make a difference this year? (SPECIFIC and check it's ACHIEVABLE) </label>
+		<div class="row">
+			<div class="col-sm-12 print-hide">
+                <textarea data-bind="textInput: data.Objective, visible: !$component.readOnly()"></textarea>
+                <div data-bind="text: data.Objective, visible: $component.readOnly(), style: { 'white-space': 'pre-wrap' }">
+                </div>
+			</div>
+			<div class="print-show" data-bind="text: data.Objective, style: { 'white-space': 'pre-wrap' }">
+			</div>
+		</div>
+		<label class="padding-top-15">How will I know I’ve made a difference (e.g. by improving quality/increasing sales/saving time/reducing cost)? (MEASURABLE &amp; TIMEBOUND)</label>
+		<div class="row">
+			<div class="col-sm-12 print-hide">
+                <textarea data-bind="textInput: data.MeasuredBy, visible: !$component.readOnly()"></textarea>
+                <div data-bind="text: data.MeasuredBy, visible: $component.readOnly(), style: { 'white-space': 'pre-wrap' }">
+                </div>
+			</div>
+			<div class="print-show" data-bind="text: data.MeasuredBy, style: { 'white-space': 'pre-wrap' }">
+			</div>
+		</div>
+		<label class="padding-top-15">Which company, divisional, zone, regional, team or store priority does this support? (RELEVANT)</label>
+		<div class="row">
+			<div class="col-sm-12 print-hide">
+                <textarea data-bind="textInput: data.RelevantTo, visible: !$component.readOnly()"></textarea>
+                <div data-bind="text: data.RelevantTo, visible: $component.readOnly(), style: { 'white-space': 'pre-wrap' }">
+                </div>
+			</div>
+			<div class="print-show" data-bind="text: data.RelevantTo, style: { 'white-space': 'pre-wrap' }">
+			</div>
+		</div>
+		<br />
+		<!--Save button row-->
+		<div class="row print-hide" data-bind="visible: false == managerView">
+			<!--Only show for existing objective-->
+			<div class="col-sm-10" data-bind="visible: data.Id()!=0">
+                <span data-bind="text: 'Created on ' + commonService.formatDateMonthDYHM(data.CreatedDate())"></span>
+				<br />
+				<span data-bind="text: 'Last updated on ' + commonService.formatDateMonthDYHM(data.LastAmendedDate())"></span>
+			</div>
+			<div class="col-sm-2 pull-right" data-bind="visible: !managerView && !data.Approved()">
+                <button class="btn btn-primary btn-block" data-bind="click: update, disable: $component.readOnly()">Save</button>
+			</div>
+		</div>
+		<!--Share button row-->
+		<!--Only show for existing objective-->
+		<div data-bind="visible: data.Id()!=0">
+			<hr />
+			<div class="row print-hide">
+				<div class="col-sm-10" data-bind="visible: data.SharedWithManager() && false == managerView">
+					<span class="h4" data-bind="text: statusMessage "></span>
+					<br />
+					<span class="h5" data-bind="text: subMessage"></span>
+				</div>
+				<div class="col-sm-10" data-bind="visible: data.SharedWithManager() && true == managerView">
+					<span class="h5" data-bind="text: statusMessage "></span>
+				</div>
+				<div class="col-sm-10" data-bind="visible: data.SharedWithManager() == false">
+					<span class="h5">
+						Once you are ready to share your record with your line manager please, click the SHARE button. This will allow them to review your notes and either AGREE them, which will lock the record, or RECOMMEND CHANGES, when they will have a chat with you about their recommendations.
+					</span>
+				</div>
+				<div class="col-sm-2" data-bind="visible: managerView && !data.Approved()">
+					<button class="btn btn-primary btn-block pull-right" data-bind="click: approve">Agree</button>
+				</div>
+				<div class="col-sm-2 pull-right" data-bind="visible: !managerView && !data.Approved()">
+					<button class="btn btn-primary btn-block" data-bind="click: share, text: data.SharedWithManager()?'Un-share':'Share'"></button>
+				</div>
+			</div>
+			<div class="row print-show">
+				<div class="col-sm-9">
+					<span class="h4" data-bind="visible: !managerView && data.SharedWithManager(), text: statusMessage"></span>
+				</div>
+			</div>
+			<br />
+		</div>
+	</div>
+</div>
+
