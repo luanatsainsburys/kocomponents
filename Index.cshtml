@@ -1,0 +1,46 @@
+﻿@using JsPlc.Ssc.Link.Models;
+@{
+    var currentUser = TempData["CurrentUser"] as LinkUserView;
+    if (currentUser == null)
+    {
+        Response.Redirect("~/Home/Unauthorized?unauthPage=Link Meeting");
+        return;
+    }
+}
+
+<div id="ObjectivesListView" style="display:none" data-bind="visible:true">
+	<div class="print-hide">@Html.MvcSiteMap().SiteMapPath()</div>
+
+	<div class="row print-hide">
+		<div class="col-md-3">
+            <img src="~/Content/Images/_32A2737.jpg" class="img-responsive wheel">
+		</div>
+		<div class="col-md-9 padding-left-25">
+			<h1>Objectives</h1><a class="btn btn-primary" data-toggle="collapse" data-target="#demo" data-bind="click: enterNewObjective" aria-expanded="false" style="float:right;margin-top:-50px;">Add objective</a>
+			<hr />
+			<p>Each of your objectives should be SMART: <br />Specific, Measurable, Achievable, Relevant and Time-bound.</p>
+			<hr />
+		</div>
+	</div>
+	<div class="container-fluid print-hide">
+		<div>
+			<div id="demo" class="collapse">
+				<div data-bind="stopBinding: true">
+					<div id="objectiveContainer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br class="print-hide" />
+	<br class="print-hide" />
+	<objectives-list params='data: objectives, readOnly: false, details: data'></objectives-list>
+</div>
+<script type="text/javascript">
+	require(["Objectives", "autogrow", "RegisterKoComponents"], function (mod, autogrow) {
+		$(document).ready(function () {
+			mod.init("ObjectivesListView", "@ViewBag.ColleagueId", "@currentUser.Colleague.FirstName @currentUser.Colleague.LastName", "@currentUser.Colleague.FirstName");
+			$('textarea').autogrow({ onInitialize: true });
+
+		});
+	});
+</script>
