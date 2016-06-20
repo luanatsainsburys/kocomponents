@@ -1,0 +1,27 @@
+﻿﻿@using JsPlc.Ssc.Link.Models;
+@{
+    var currentUser = TempData["CurrentUser"] as LinkUserView;
+    if (currentUser == null)
+    {
+        Response.Redirect("~/Error/Unauthorized");
+        return;
+    }
+}
+
+<div id="ObjectivesListView" style="display:none" data-bind="visible:true">
+    <div class="print-hide">@Html.MvcSiteMap().SiteMapPath()</div>
+    <objectives-manager-view params="colleague: colleague"></objectives-manager-view>
+</div>
+<script type="text/javascript">
+    require(["featureContainerService", "common", "knockout", "RegisterKoComponents"], function (ftc, common, ko) {
+        var buildPageUi = function () {
+            var vm = {};
+            vm.colleague = common.getUserInfo().colleague;
+
+            ko.applyBindings(vm, document.getElementById('ObjectivesListView'));
+        };
+        $(document).ready(function () {
+            ftc.startPageUi(buildPageUi);
+        });
+    });
+</script>
