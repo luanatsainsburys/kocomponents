@@ -1,0 +1,42 @@
+﻿﻿@using JsPlc.Ssc.Link.Models;
+@{
+    var currentUser = TempData["CurrentUser"] as LinkUserView;
+    if (currentUser == null)
+    {
+        Response.Redirect("~/Error/Unauthorized");
+        return;
+    }
+}
+
+<div id="ObjectivesListView" style="display:none" data-bind="visible:true">
+    <div class="print-hide">@Html.MvcSiteMap().SiteMapPath()</div>
+
+    <div class="row print-hide">
+        <div class="col-md-3">
+            <img src="~/Content/Images/_32A2737.jpg" class="img-responsive wheel">
+        </div>
+        <div class="col-md-9 padding-left-25">
+            <div class="row">
+                <!--This button is only available when there is no active objective set-->
+                <div class="col-sm-8"><h1>Objectives</h1></div>
+                <div class="col-sm-3 pull-right new-objective-set-button"><button class="btn btn-primary " data-bind="click: newObjectiveSet, enable: noActiveSet">New objective set</button></div>
+            </div>
+            <hr />
+            <p>Each of your objectives should be SMART: <br />Specific, Measurable, Achievable, Relevant and Time-bound.</p>
+            <hr />
+        </div>
+    </div>
+    <div class="padding-top-15">
+        <objectives-user-view id="objUsrView" params="{noActiveSet: noActiveSet}"></objectives-user-view>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    require(["ObjectiveIndex3", "autogrow", "RegisterKoComponents"], function (mod, autogrow) {
+        $(document).ready(function () {
+            mod.init();
+            $('textarea').autogrow({ onInitialize: true });//?Do we need this??
+        });
+    });
+</script>
