@@ -1,0 +1,8 @@
+﻿<div class="objectives-manager-view">
+    <!-- Display the currently selected set of objectives -->
+    <div data-bind="if: selectedOne">
+        <objective-set params='data: selectedOne(), readOnly: true, managerView: true, details: colleague'></objective-set>
+    </div>
+    <!-- Display the list of objective sets for the colleague -->
+    <objective-set-list params='data: objectiveSets, onSelect: onSelect, readOnly: true'></objective-set-list>
+</div>
