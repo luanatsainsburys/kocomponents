@@ -1,0 +1,186 @@
+﻿<div class="print-show" data-bind="if:managerView">
+    <h2>Personal development plan for <br><i data-bind="text: $component.ownerFullName"></i></h2>
+</div>
+
+<div id="accordion" class="panel-group pdp-accordion">
+
+    <section class="linkPanel panel-default">
+        <div class="panel-heading linkPadding" role="tab" id="headingOne">
+            <h3>
+                <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Achieving my objectives <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </h3>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <label for="achieveObjectives">What areas do I need to develop to achieve my objectives?</label>
+                <!--Not read only-->
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="achieveObjectives"
+                              data-bind="jsPlcComment: pdp.achieveObjectives"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 characters)"
+                              name="achieveObjectives"></textarea>
+                </div>
+                <!--Read only-->
+                <div id="achieveObjectives" class="read-only" data-bind="visible:readOnly(), text: pdp.achieveObjectives" />
+
+                <label for="achieveObjectivesActions">What actions will I take?</label>
+                <div id="achieveObjectivesActions" class="read-only" data-bind="visible:readOnly(), text: pdp.achieveObjectivesActions" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="achieveObjectivesActions"
+                              data-bind="jsPlcComment: pdp.achieveObjectivesActions"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 characters)"
+                              name="achieveObjectivesActions"></textarea>
+                </div>
+
+                <label for="achieveObjectivesWhen">By when?</label>
+                <div id="achieveObjectivesWhen" class="read-only" data-bind="visible:readOnly(), text: pdp.achieveObjectivesWhen" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="achieveObjectivesWhen"
+                              data-bind="jsPlcComment: pdp.achieveObjectivesWhen"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 characters)"
+                              name="achieveObjectivesWhen"></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="linkPanel panel-default">
+        <div class="panel-heading linkPadding" role="tab" id="headingTwo">
+            <h3>
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Key strengths <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </h3>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+                <label for="keyStrengths">What are my key strengths?</label>
+                <div id="keyStrengths" class="read-only" data-bind="visible:readOnly(), text: pdp.keyStrengths" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="keyStrengths"
+                              data-bind="jsPlcComment: pdp.keyStrengths"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 characters)"
+                              name="keyStrengths"></textarea>
+                </div>
+
+                <label for="keyStrengthsActions">What actions will I take to further develop these areas?</label>
+                <div id="keyStrengthsActions" class="read-only" data-bind="visible:readOnly(), text: pdp.keyStrengthsActions" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="keyStrengthsActions"
+                              data-bind="jsPlcComment: pdp.keyStrengthsActions"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 characters)"
+                              name="keyStrengthsActions"></textarea>
+                </div>
+
+                <label for="keyStrengthsWhen">By when?</label>
+                <div id="keyStrengthsWhen" class="read-only" data-bind="visible:readOnly(), text: pdp.keyStrengthsWhen" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="keyStrengthsWhen"
+                              data-bind="jsPlcComment: pdp.keyStrengthsWhen"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 chars)"
+                              name="keyStrengthsWhen"></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="linkPanel panel-default">
+        <div class="panel-heading linkPadding" role="tab" id="headingThree">
+            <h3>
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Career aspirations <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </h3>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+                <label for="careerAspirations">What are my career aspirations?</label>
+                <div id="careerAspirations" class="read-only" data-bind="visible:readOnly(), text: pdp.careerAspirations" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="careerAspirations"
+                              data-bind="jsPlcComment: pdp.careerAspirations"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 characters)"
+                              name="careerAspirations"></textarea>
+                </div>
+
+                <label for="careerAspirationsActions">What actions do I need to take to move towards these aspirations?</label>
+                <div id="careerAspirationsActions" class="read-only" data-bind="visible:readOnly(), text: pdp.careerAspirationsActions" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="careerAspirationsActions"
+                              data-bind="jsPlcComment: pdp.careerAspirationsActions"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 chars)"
+                              name="careerAspirationsActions"></textarea>
+                </div>
+
+                <label for="careerAspirationsWhen">By when?</label>
+                <div id="careerAspirationsWhen" class="read-only" data-bind="visible:readOnly(), text: pdp.careerAspirationsWhen" />
+                <div class="print-hide" data-bind="visible:!readOnly()">
+                    <textarea class="singleLinePdp" id="careerAspirationsWhen"
+                              data-bind="jsPlcComment: pdp.careerAspirationsWhen"
+                              maxlength="5000" placeholder="Enter comments here (max 5000 characters)"
+                              name="careerAspirationsWhen"></textarea>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div class="panel-group" data-bind="ifnot:$component.managerView">
+    <!--Save and Print buttons row-->
+    <div class="row print-hide">
+        <div class="col-sm-10">
+            <p>
+                <span class="h5" data-bind="text: 'Created on ' + $component.commonService.formatDateMonthDYHM(pdp.CreatedDate())"></span> <br>
+                <span class="h5" data-bind="text: 'Last updated on ' + $component.commonService.formatDateMonthDYHM(pdp.UpdatedDate())"></span>
+            </p>
+        </div>
+        <div class="col-sm-2 pull-right">
+            <button class="btn btn-primary" data-bind="click: update, disable: $component.readOnly()">Save</button>
+        </div>
+    </div>
+
+    <hr class="print-hide">
+
+    <!--Share button section-->
+    <div class="row print-hide">
+        <div class="col-sm-10">
+            <!--Approved and not shared is an invalid combination-->
+            <div data-bind="visible: !pdp.SharingDate() && !pdp.ApprovalDate()">
+                <p>
+                    <span class="h5">Once you are ready to share your record with your line manager please, click the SHARE button. This will allow them to review your notes.</span>
+                </p>
+            </div>
+            <div data-bind="visible: pdp.SharingDate() && !pdp.ApprovalDate()">
+                <p>
+                    <span class="h5" data-bind="text: 'Shared with '+ $component.managerFullName + ' on ' + commonService.formatDateMonthDYHM(pdp.SharingDate())"></span> <br>
+                    <span class="h5" data-bind="text: 'Un-sharing allows you to edit your PDP. ' + $component.managerFullName + ' will not be able to view unless the PDP is shared.'"></span>
+                </p>
+            </div>
+            <div data-bind="visible: pdp.ApprovalDate()">
+                <p><span data-bind="text: 'Agreed by ' + $component.managerFullName + ' on '+  commonService.formatDateMonthDYHM(pdp.SharingDate())"></span></p>
+            </div>
+        </div>
+        <div class="col-sm-2 pull-right">
+            <div data-bind="visible: pdp.SharingDate() && !pdp.ApprovalDate()">
+                <button class="btn btn-primary" data-bind="click: confirmUnshare">Un-Share</button> <!-- .btn-block removed -->
+            </div>
+            <div data-bind="visible: !pdp.SharingDate() && !pdp.ApprovalDate()">
+                <button class="btn btn-primary" data-bind="click: confirmShare">Share</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    <a class="print-hide" href="#" data-bind="click: print">
+        <i class="indicator glyphicon glyphicon-print fa-2x"></i>&nbsp;Print
+    </a>
+</p>
+
+<!--For post render tasks-->
+<span data-bind="template: { afterRender: componentLoaded }"></span>
+

@@ -1,0 +1,92 @@
+﻿<div class="print-show">
+	<h1>Personal development plan</h1>
+	<h4 data-bind="text: data.FullName"></h4>
+	<div class="linkPanel"></div>
+</div>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<div class="linkPanelS panel-default">
+		<div class="panel-heading" role="tab" id="headingOne">
+			<h3>
+				<a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					Achieving my objectives <span class="glyphicon glyphicon-plus" style="float:right;"></span>
+				</a>
+			</h3>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			<div class="panel-body">
+				<label for="achieveObjectives">What areas do I need to develop to achieve my objectives?</label>
+				<div id="achieveObjectives" class="grey-color" data-bind="text: achieveObjectives, style: { 'white-space': 'pre-wrap' }" />
+
+				<label class="padding-top-15" for="achieveObjectivesActions">What actions will I take?</label>
+				<div id="achieveObjectivesActions" class="grey-color" data-bind="text: achieveObjectivesActions, style: { 'white-space': 'pre-wrap' }" />
+
+				<label class="padding-top-15" for="achieveObjectivesWhen">By when?</label>
+				<div id="achieveObjectivesWhen" class="grey-color" data-bind="text: achieveObjectivesWhen, style: { 'white-space': 'pre-wrap' }" />
+			</div>
+		</div>
+	</div>
+	<div class="linkPanel panel-default">
+		<div class="panel-heading" role="tab" id="headingTwo">
+			<h3>
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					Key strengths <span class="glyphicon glyphicon-plus" style="float:right;"></span>
+				</a>
+			</h3>
+		</div>
+		<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			<div class="panel-body">
+				<label for="keyStrengths">What are my key strengths?</label>
+				<div id="keyStrengths" class="grey-color" data-bind="text: keyStrengths, style: { 'white-space': 'pre-wrap' }" />
+
+				<label class="padding-top-15" for="keyStrengthsActions">What actions will I take to further develop these areas?</label>
+				<div id="keyStrengthsActions" class="grey-color" data-bind="text: keyStrengthsActions, style: { 'white-space': 'pre-wrap' }" />
+
+				<label class="padding-top-15" for="keyStrengthsWhen">By when?</label>
+				<div id="keyStrengthsWhen" class="grey-color" data-bind="text: keyStrengthsWhen, style: { 'white-space': 'pre-wrap' }" />
+			</div>
+		</div>
+	</div>
+	<div class="linkPanel panel-default">
+		<div class="panel-heading" role="tab" id="headingThree">
+			<h3>
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					Career aspirations <span class="glyphicon glyphicon-plus" style="float:right;"></span>
+				</a>
+			</h3>
+		</div>
+		<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			<div class="panel-body">
+				<label for="careerAspirations">What are my career aspirations?</label>
+				<div id="careerAspirations" class="grey-color" data-bind="text: careerAspirations, style: { 'white-space': 'pre-wrap' }" />
+				<label class="padding-top-15" for="careerAspirationsActions">What actions do I need to take to move towards these aspirations?</label>
+				<div id="careerAspirationsActions" class="grey-color" data-bind="text: careerAspirationsActions, style: { 'white-space': 'pre-wrap' }" />
+				<label class="padding-top-15" for="careerAspirationsWhen">By when?</label>
+				<div id="careerAspirationsWhen" class="grey-color" data-bind="text: careerAspirationsWhen, style: { 'white-space': 'pre-wrap' }" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Shared for your approval on  -->
+<div class="panel-group grey-color">
+	<div class="row print-hide">
+		<div class="col-sm-10">
+			<div data-bind=" visible: SharingDateFormatted !== '' && ApprovalDateFormatted === ''">
+				<span class="h5">
+					If you are happy with this record, please click AGREE, this will lock the record from further editing. Alternatively, if you wish to RECOMMEND CHANGES, have a chat to <span data-bind="text: data.ColleagueFirstName.trim()"></span>, 
+					they can update the records and re-share them with you for your sign off.
+				</span>
+			</div>
+			<span class="h4" data-bind="text: 'You agreed ' + data.ColleagueFirstName.trim() + '\'s PDP on ' + ApprovalDateFormatted, visible: ApprovalDateFormatted !== ''"></span>
+		</div>
+		<div class="col-sm-2 pull-right" data-bind="visible: ApprovalDateFormatted === ''">
+			<button class="btn btn-primary btn-block" data-bind="click: approve">Agree</button>
+		</div>
+	</div>
+</div>
+
+<a class="print-hide" href="javascript:void(0)" onclick="window.print()">
+	<i class="indicator glyphicon glyphicon-print fa-2x"></i> Print
+</a>
+
+
