@@ -1,0 +1,70 @@
+﻿<div class="print-hide" id="idCurrentMeeting" style="display: none;" data-bind="visible: true">
+	<div class="row">
+		<div class="col-sm-8 grey-color">
+			<hr />
+			<p>
+				You've had
+				<span data-bind="text: (MeetingsInLast12Months == 0) ? 'no conversations ' :
+		 (MeetingsInLast12Months == 1) ? '1 conversation ' :
+		 (MeetingsInLast12Months + ' conversations ')"></span>
+
+
+			</p>
+			<!-- ko if: (LastMeeting && LastMeeting.MeetingDate) -->
+			<p>Last conversation <span data-bind="text: $component.meetingService.formatDateMonthDYHM(LastMeeting.MeetingDate)"></span></p>
+			<!-- /ko -->
+			<hr />
+		</div>
+	</div>
+	<!-- Latest conversation if any -->
+	<!-- ko if: (LatestMeeting) -->
+	<div data-bind="template: { name: 'current-meeting-template', data: LatestMeeting }"></div>
+	<!-- /ko -->
+	<!-- ko if: (!LatestMeeting) -->
+	<div data-bind="template: { name: 'nocurrent-meeting-template', data: LatestMeeting }"></div>
+	<!-- /ko -->
+</div>
+<script type="text/html" id="nocurrent-meeting-template">
+	<!-- note: dataType = LinkMeetingView -->
+	<h2>Upcoming conversations</h2>
+	<div class="linkBox3 linkPadding">
+		<p class="grey-color margin-0">Has no upcoming conversations.</p>
+	</div>
+</script>
+<script type="text/html" id="current-meeting-template">
+	<!-- note: dataType = LinkMeetingView -->
+	<h2>Upcoming conversation</h2>
+	<div class="linkBox3 linkPadding">
+		<h3 data-bind="text: $component.meetingService.formatDateMonthDYHM(MeetingDate) "></h3>
+		<p class="grey-color">
+
+			<!-- ko if: (ColleagueSignOff == 1) -->
+			<!--Completed on...-->
+			<span data-bind="text: $parent.ColleagueFirstName"></span> shared this conversation on
+			<span data-bind="text: $component.meetingService.formatDateMonthDYHM(ColleagueSignedOffDate) "></span>
+			<br />
+			<!-- ko if: (ManagerSignOff == 1) -->
+			You accepted
+			<span data-bind="text: $parent.ColleagueFirstNameApos"></span>
+			record on
+			<span data-bind="text: $component.meetingService.formatDateMonthDYHM(ManagerSignedOffDate) "></span>
+			<!-- /ko -->
+			<!-- ko if: (ManagerSignOff == 0) && (SharingStatus ==1)  -->
+			Please review and either AGREE or RECOMMEND CHANGES
+			<!-- /ko -->
+			<!-- /ko -->
+			<!-- ko if: (ColleagueSignOff ==0) -->
+			<span data-bind="text: $parent.ColleagueFirstName"></span> hasn't yet completed this conversation.
+			<!-- /ko -->
+			<!-- ko if: (SharingStatus ==0) -->
+			This conversation hasn't been shared by
+			<span data-bind="text: $component.ColleagueFirstName"></span> yet.
+			<!-- /ko -->
+
+		</p>
+		<p>
+			<a data-bind="attr: {'href': $component.meetingService.getEditOrViewLink($data)}, visible: $data.SharingStatus == 1"
+			   class="btn btn-sm btn-primary">View Link conversation</a>
+		</p>
+	</div>
+</script>

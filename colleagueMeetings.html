@@ -1,0 +1,130 @@
+﻿<section id="linkpage" style="display: none;" data-bind="visible: true">
+    <div id="msgs"></div>
+    <p>
+        <!--You've had-->
+        Had
+        <strong>
+            <span data-bind="text: (MeetingsInLast12Months == 0) ? 'no meetings ' :
+                                    (MeetingsInLast12Months == 1) ? '1 meeting ' :
+                                    (MeetingsInLast12Months + ' meetings ')"></span>
+        </strong>
+        <!--with your line manager in the last 12 months.-->
+        with line manager in the last 12 months.
+    </p>
+    <!-- ko if: (LastMeeting && LastMeeting.MeetingDate) -->
+    Last meeting: <strong><span data-bind="text: $component.meetingService.formatDateMonthDYHM(LastMeeting.MeetingDate)"></span></strong>
+    <!-- /ko -->
+    <div class="row" style="padding-bottom: 30px; border-bottom: solid 2px silver">
+        <!-- Latest Meeting if any -->
+        <!-- ko if: (LatestMeeting) -->
+        <div data-bind="template: { name: 'current-meeting-template', data: LatestMeeting }"></div>
+        <!-- /ko -->
+        <!-- ko if: (!LatestMeeting) -->
+        <div data-bind="template: { name: 'nocurrent-meeting-template', data: LatestMeeting }"></div>
+        <!-- /ko -->
+        <div class="col-md-12">
+            <h2>Previous Link conversations</h2>
+        </div>
+        <!-- ko if: (!PastMeetings) || (PastMeetings.length == 0) -->
+        <div data-bind="template: { name: 'nopast-meeting-template', data: PastMeetings}"></div>
+        <!-- /ko -->
+        <!-- ko foreach: PastMeetings -->
+        <div data-bind="template: { name: 'past-meeting-template', data: $data }"></div>
+        <!-- /ko -->
+    </div>
+
+</section>
+<script type="text/html" id="nocurrent-meeting-template">
+    <!-- note: dataType = LinkMeetingView -->
+    <div class="col-md-12" style="border: solid 1px black; width: 700px; margin: 10px 10px">
+        <!--<p>You have no upcoming meetings. Click Create Link meeting button to arrange one.</p>-->
+        <p>Has no upcoming meetings.</p>
+    </div>
+</script>
+<script type="text/html" id="current-meeting-template">
+    <!-- note: dataType = LinkMeetingView -->
+    <div style="margin: 10px 10px">
+        <div class="col-md-12" style="background-color: silver; color: black; border: solid 1px black; ">
+            <p><span>Current Link meeting</span></p>
+        </div>
+        <div class="col-md-12" style="border: solid 1px black; padding-top: 12px;">
+            <div class="col-md-1">
+                <img src="/Content/Images/calendar_icon.png" style="width: 40px; height: 40px" />
+            </div>
+            <div id="u98" class="col-md-10">
+                <p style="font-size:20px;">
+                    <span style="font-family:'Arial Bold', 'Arial';font-weight:700;font-size:20px;" data-bind="text: $component.meetingService.formatDateMonthDYHM(MeetingDate) "></span>
+                </p>
+                <p style="font-size:13px;">
+                    <span style="font-family:'Arial';font-weight:400;font-size:13px;">
+                        <!-- ko if: (ColleagueSignOff == 1) -->
+                        <!-- ko if: (ManagerSignOff == 0) -->
+                        You completed this meeting on <span data-bind="text: $component.meetingService.formatDateMonthDYHM(ColleagueSignedOffDate) "></span>
+                        <br />
+                        <span data-bind="text: $parent.ManagerFirstName"></span> has not yet accepted your record for this Link meeting.
+                        <!-- /ko -->
+                        <!-- ko if: (ManagerSignOff == 1) -->
+                        <span data-bind="text: $parent.ManagerFirstName"></span> accepted your record for this Link meeting on
+                        <span data-bind="text: $component.meetingService.formatDateMonthDYHM(ManagerSignedOffDate) "></span>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko if: (ColleagueSignOff ==0) -->
+                        This meeting is not complete yet. Once you complete it, please submit it for signoff by
+                        <span data-bind="text: $parent.ManagerFirstName"></span>
+                        <!-- /ko -->
+                    </span>
+                </p>
+                <p>
+                    <a data-bind="attr: {'href': $component.meetingService.getEditOrViewLink($data)}"
+                       class="btn btn-sm" style="background-color: whitesmoke; text-decoration: none; border: solid 1px grey">View Link meeting</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="nopast-meeting-template">
+    <!-- note: dataType = LinkMeetingView -->
+    <div class="col-md-12" style="border: solid 1px black; width: 700px; margin: 10px 10px">
+        <p>You have no previous meetings.</p>
+    </div>
+</script>
+<script type="text/html" id="past-meeting-template">
+    <!-- note: dataType = LinkMeetingView -->
+    <div style="margin: 10px 10px;">
+        <div class="col-md-12" style="border: solid 1px black; padding-top: 12px; margin-bottom: 10px">
+            <div class="col-md-1">
+                <i class="fa fa-check-circle fa-3x" data-bind="visible: (Status==1)"></i>
+                <i class="fa fa-times-circle fa-3x" data-bind="visible: (Status==0)"></i>
+            </div>
+            <div id="u98" class="col-md-10">
+                <p style="font-size:20px;">
+                    <span style="font-family:'Arial Bold', 'Arial';font-weight:700;font-size:20px;"
+                          data-bind="text: $component.meetingService.formatDateMonthDYHM(MeetingDate) "></span>
+                </p>
+                <p style="font-size:13px;">
+                    <span style="font-family:'Arial';font-weight:400;font-size:13px;">
+                        <!-- ko if: (ColleagueSignOff == 1) -->
+                        <!-- ko if: (ManagerSignOff == 0) -->
+                        You completed this meeting on <span data-bind="text: $component.meetingService.formatDateMonthDYHM(ColleagueSignedOffDate) "></span>
+                        <br />
+                        <span data-bind="text: $component.meetingService.getColleagueFirstName(ManagerAtTime)"></span> has not yet accepted your record for this Link meeting.
+                        <!-- /ko -->
+                        <!-- ko if: (ManagerSignOff == 1) -->
+                        <span data-bind="text: $component.meetingService.getColleagueFirstName(ManagerAtTime)"></span> accepted your record for this Link meeting on
+                        <span data-bind="text: $component.meetingService.formatDateMonthDYHM(ManagerSignedOffDate) "></span>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko if: (ColleagueSignOff ==0) -->
+                        This conversation is not complete yet. Once you complete it, please submit it for signoff by
+                        <span data-bind="text: $component.meetingService.getColleagueFirstName(ManagerAtTime)"></span>
+                        <!-- /ko -->
+                    </span>
+                </p>
+                <p>
+                    <a data-bind="attr: {'href': $component.meetingService.getEditOrViewLink($data)}"
+                       class="btn btn-sm" style="background-color: whitesmoke; text-decoration: none; border: solid 1px grey">View Link meeting</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>

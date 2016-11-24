@@ -1,0 +1,8 @@
+﻿<ol class="breadcrumb" data-bind="foreach: data">
+    <li data-bind="visible:url!=null">
+        <a data-bind="text: title, attr:{href:url}"></a>
+    </li>
+    <li data-bind="visible:url==null">
+        <span data-bind="text: title"></span>
+    </li>
+</ol>
