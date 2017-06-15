@@ -1,0 +1,17 @@
+﻿<div class="list-group" data-bind="foreach: financialYears, visible: true" style="display: none">
+    <div data-bind="css: { even: $index()%2===0, odd: $index()%2===1 }"  class="financial-year-box container-fluid linkBox1 linkPadding linkPanel" >
+        <div class="row">
+            <div class="col-md-10">
+                <button class="btn btn-link" data-bind="click: $component.show, text: Name"></button>
+            </div>
+            <span class="pull-right">
+                <a role="button" href="#" target="_blank" data-bind="click: $component.toggleView" title="Collapse view">
+                    <span class="fa fa-plus"></span>
+                </a>
+            </span>
+        </div>
+        <!--<div data-bind="stopBinding: true">
+            <div data-bind="attr: {'id': $component.toggleView}" ></div>
+        </div>-->
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿<div class="list-group" data-bind="foreach: osGroups, visible: true" style="display: none">
+    <div data-bind="css: { even: $index()%2===0, odd: $index()%2===1 }" class="financial-year-box container-fluid linkBox1 linkPadding linkPanel">
+        <div class="row">
+            <div class="col-md-10">
+                <button class="btn btn-link" data-bind="click: $component.show, text: financialYear?financialYear:'No financial year specified'"></button>
+            </div>
+            <span class="pull-right">
+                <a role="button" href="#" target="_blank" data-bind="click: $component.toggleView">
+                    <span class="fa fa-plus"></span>
+                </a>
+            </span>
+        </div>
+        <div data-bind="visible: $component.expandedView() || $component.expandedAll(), attr: {'aria-hidden': $component.expandedView()?'false':'true'}" style="display: none" aria-hidden="true">
+            <div class="list-group" data-bind="foreach: entries">
+                <div class="row objective-set" data-bind="css: { even: $index()%2===0, odd: $index()%2===1 }">
+                    <div class="col-md-10 how-to-guide-row-text">
+                        <button class="btn btn-link" data-bind="click: $component.show, text: $component.commonService.shortenText(Title)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿<div class="ln-o-grid pl-5 pt-5 pr-5 pb-0" *ngIf="delivery">
+
+    <div class="ln-o-grid__item ln-u-1 ln-u-2/12@sm">
+        <div class="ln-o-grid">
+            <div class="ln-o-grid__item ln-u-1 m-0 p-0" >
+                <div id="originName" class="p-0 m-0 large-detail-font" style="line-height: 150%;">
+                    <strong>{{delivery.Origin}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ln-o-grid__item ln-u-1 ln-u-9/12@sm">
+        <div class="ln-o-grid">
+            <div class="ln-o-grid__item ln-u-1 m-0 p-0">
+                <div class="ln-o-grid__item ln-u-1">
+                    <delivery-departments [delivery]="delivery"></delivery-departments>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!--<div class="ln-o-grid__item ln-u-1 ln-u-1/12@sm">
+        <div class="ln-o-grid">
+            <div class="ln-o-grid__item ln-u-1 ln-u-text-align-right m-0 p-0">
+                <div class="p-0 m-0 large-detail-font" style="line-height: 150%;">
+                    <strong [ngClass]="turnaroundStatus(countDown)+'-text status'">{{countDown}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+</div>

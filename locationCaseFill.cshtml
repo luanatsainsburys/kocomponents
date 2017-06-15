@@ -1,0 +1,52 @@
+﻿<script type="text/html" id="caseFill">
+    <div class="case-fill">
+        @*<div>
+            <label><input type="checkbox" data-bind="checked: !override"/> Override depot RPE conversion factors</label>
+        </div>*@
+        <div data-bind="visible: !$component.noData()">
+            <table class="table">
+                <thead>
+                    <tr data-bind="foreach: columnHeaders">
+                        <th data-bind="text: $data"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: $component.categories">
+                    <!--Repeat for all the category/subCategory involved-->
+                    <tr>
+                        <!--Case fill category-->
+                        <td data-bind="text: $data"></td>
+                        <!-- ko foreach: $component.byCategory()[$data] -->
+                            <!-- ko if: $component.readOnly() -->
+                            <td><span data-bind="text: $component.byCategory()[$parent][($index()+1)%7].factor" /></td>
+                            <!-- /ko -->
+                            <!-- ko if: !$component.readOnly() -->
+                            <td><input data-bind="textInput: $component.byCategory()[$parent][($index()+1)%7].factor" /></td>
+                            <!-- /ko -->
+                        <!-- /ko -->
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-danger" data-bind="text: $component.message">
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <div class="pull-left" data-bind="if:  $component.storeMode">
+                        <button class="btn btn-secondary" type="button" 
+                                data-bind="visible: $component.override() && $component.isPersisted(), activity: revertToDepotData.isExecuting, command: revertToDepotData">Revert to depot level factors</button>
+                        <button class="btn btn-secondary" type="button" data-bind="visible: !$component.override(), click: $component.overrideDepotFactors">Override depot level factors</button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pull-right" data-bind="if: !$component.readOnly()">
+                        <button class="btn btn-secondary" type="button" data-bind="activity: getCaseFillFactors.isExecuting, command: getCaseFillFactors">Cancel</button>
+                        <button class="btn btn-primary" type="button" data-bind="activity: saveCaseFillFactors.isExecuting, command: saveCaseFillFactors">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-bind="visible: $component.noData()">
+            No conversion factors available
+        </div>
+    </div>
+</script>
+
